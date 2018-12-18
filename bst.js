@@ -31,6 +31,23 @@ class BinarySearchTree {
       }
     }
   }
+
+  find(key){
+    if(this.key === key){
+      return this.value;
+    }
+
+    else if(key < this.key && this.left){
+      return this.left.find(key);
+    }
+    else if( key > this.key && this.right){
+      return this.right.find(key);
+    }
+    else{
+      throw new Error('Key Error');
+    }
+  }
+
   print(BST){
     if(BST === null){
       return;
@@ -43,7 +60,9 @@ class BinarySearchTree {
 
 const BST = new BinarySearchTree();
 const array = [3, 1, 4, 6, 9, 2, 5, 7, 0];
-array.forEach(function(element){
-  BST.insert(element);
-});
-BST.print(BST);
+const arrayTwo = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+for(let i = 0; i < array.length; i++){
+  BST.insert(array[i], arrayTwo[i]);
+}
+//BST.print(BST);
+console.log(BST.find(4));
